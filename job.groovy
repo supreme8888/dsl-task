@@ -25,7 +25,11 @@ return gettags.text.readLines().collect {
         steps {
             shell('''
 sh script.sh > output.txt
-tar -zcvf ${BRANCH_NAME}_dsl_script.tar.gz *.sh *.groovy''')
+if [ -f *.groovy ]; then
+tar -zcvf ${BRANCH_NAME}_dsl_script.tar.gz *.sh *.groovy
+else
+tar -zcvf ${BRANCH_NAME}_dsl_script.tar.gz *.sh
+fi''')
         }
         publishers {
             archiveArtifacts {
