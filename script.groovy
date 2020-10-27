@@ -41,7 +41,7 @@
 
 job('MNTLAB-shryshchanka-main-job'){
   parameters{
-    choiceParam('BRANCH_NAME', ['shryshchanka (default)', 'main'], 'branch')
+    choiceParam('BRANCH_NAME', ['shryshchanka', 'main'], 'branch')
       activeChoiceParam('BUILDS_TRIGGER') {
           description('')
           filterable(false)
