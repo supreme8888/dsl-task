@@ -1,4 +1,4 @@
-node("${SLAVE}") {
+node("${master}") {
    checkout scm
    sh 'pwd'
     step([
