@@ -28,7 +28,7 @@
       }
     steps {
       shell('chmod +x script.sh && ./script.sh > output.txt' )
-      shell('#!/bin/bash' + '\n' + 'if [ -f *.groovy ]; then' + '\n' + '  tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh' + '\n' + 'else' + '\n' + '  tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz script.sh' + '\n' + 'fi')
+      shell('#!/bin/bash' + '\n' + 'if [ -f *.groovy ]; then' + '\n' + '  tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz *.groovy script.sh' + '\n' + 'else' + '\n' + '  tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz script.sh' + '\n' + 'fi')
     }
     
     publishers {
