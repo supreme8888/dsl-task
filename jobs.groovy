@@ -1,6 +1,5 @@
 myname="sshevtsov"
 
-
 (1..4).each{
   job_name="MNTLAB-$myname-child$it-build-job"
   job("$job_name") {
@@ -30,7 +29,6 @@ urlText("https://api.github.com/repos/MNT-Lab/dsl-task/branches")
 ''')
             }
         }
-
   }
 
 	scm {
@@ -46,8 +44,8 @@ urlText("https://api.github.com/repos/MNT-Lab/dsl-task/branches")
         shell ("chmod +x script.sh")
        	line="./script.sh > output.txt"
         shell (line)
-
     }
+
       publishers {
         archiveArtifacts {
           pattern('${BRANCH_NAME}_dsl_script.tar.gz')
@@ -55,9 +53,7 @@ urlText("https://api.github.com/repos/MNT-Lab/dsl-task/branches")
             onlyIfSuccessful()
         }
         wsCleanup()
-
       }
-
 	}
 	}
  }
@@ -66,17 +62,14 @@ urlText("https://api.github.com/repos/MNT-Lab/dsl-task/branches")
 job("MNTLAB-$myname-main-build-job-TEST"){
      parameters {
         choiceParam('BRANCH_NAME',["$myname", 'main'])
-
         activeChoiceParam("BUILDS_TRIGGER") {
             choiceType('CHECKBOX')
-
             groovyScript {
               script('''
 l=[];
 (1..4).each { l.add("MNTLAB-sshevtsov-child$it-build-job") };
 return(l);
 ''')
-
             }
         }
 
@@ -87,10 +80,9 @@ return(l);
           }
           branch("*/$myname")
         }
-
 	}
-
     }
+
   steps {
         downstreamParameterized {
             trigger('$BUILDS_TRIGGER') {
