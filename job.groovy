@@ -13,7 +13,7 @@ job('MNTLAB-' + student + '-main-build-job-test') {
             groovyScript {
                 script('''def job_list = []
 (1..4).each {
-    job_list.add("MNTLAB-dmezhva-child" + it + "-build-job")
+    job_list.add('MNTLAB-''' + student + '''-child" + it + "-build-job')
 }
 return job_list''')
             }
