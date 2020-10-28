@@ -59,7 +59,7 @@ urlText("https://api.github.com/repos/MNT-Lab/dsl-task/branches")
  }
 
 
-job("MNTLAB-$myname-main-build-job-TEST"){
+job("MNTLAB-$myname-main-build-job"){
      parameters {
         choiceParam('BRANCH_NAME',["$myname", 'main'])
         activeChoiceParam("BUILDS_TRIGGER") {
