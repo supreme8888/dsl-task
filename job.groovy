@@ -7,16 +7,14 @@ job("MNTLAB-" + NAME + "-main-build-job"){
       description('Allows user choose from multiple choices')
       choiceType('CHECKBOX')
         groovyScript {
-          script('''
-          def list=[]
-          [1, 2, 3, 4].each {
-            list.add("MNTLAB-" + NAME + "-child" + it + "-build-job")
+          script('''def list = []
+          (1..4).each {
+            job_list.add('MNTLAB-''' + student + '''-child' + it + '-build-job')
           }
-          return list
-        ''')
+          return list''')
     }
    }
-  } 
+  }
   steps{
     downstreamParameterized {
       trigger('$JOBA') {
@@ -35,9 +33,9 @@ job("MNTLAB-" + NAME + "-main-build-job"){
 
 [1, 2, 3, 4].each {
   job("MNTLAB-" + NAME + "-child" + it + "-build-job") {
-   parameters {
+    parameters {
       activeChoiceParam('BRANCH_NAME') {
-        choiceType('SINGLE_SELECT')
+          choiceType('SINGLE_SELECT')
           groovyScript {
             script('''def gettags = ("git ls-remote -t -h https://github.com/MNT-Lab/dsl-task.git ").execute()
                       return gettags.text.readLines().collect { 
