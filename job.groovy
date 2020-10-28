@@ -2,7 +2,7 @@ student = 'dmezhva'
 
 // create main job
 
-job('MNTLAB-' + student + '-main-build-job-test') {
+job('MNTLAB-' + student + '-main-build-job') {
     parameters {
         choiceParam('BRANCH_NAME', [student, 'main'])
     }
@@ -13,7 +13,7 @@ job('MNTLAB-' + student + '-main-build-job-test') {
             groovyScript {
                 script('''def job_list = []
 (1..4).each {
-    job_list.add('MNTLAB-''' + student + '''-child" + it + "-build-job')
+    job_list.add('MNTLAB-''' + student + '''-child' + it + '-build-job')
 }
 return job_list''')
             }
@@ -38,7 +38,7 @@ return job_list''')
 // create child jobs
 
 (1..4).each {
-    job('MNTLAB-' + student + '-child' + it + '-build-job-test') {
+    job('MNTLAB-' + student + '-child' + it + '-build-job') {
         parameters {
             activeChoiceParam('BRANCH_NAME') {
                 choiceType('SINGLE_SELECT')
