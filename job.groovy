@@ -8,7 +8,7 @@ job('MNTLAB-' + student + '-main-build-job') {
     }
 
     parameters {
-        activeChoiceParam('BUILD_TRIGGER') {
+        activeChoiceParam('JOB_LIST') {
             choiceType('CHECKBOX')
             groovyScript {
                 script('''def job_list = []
@@ -21,7 +21,7 @@ return job_list''')
     }
     steps {
         downstreamParameterized {
-            trigger('$BUILDS_TRIGGER') {
+            trigger('$JOB_LIST') {
                 block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
