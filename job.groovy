@@ -35,7 +35,7 @@ return list
                }                 
               }   
             }
-       }
+        }
 
       
    for(i in 1..4) {
