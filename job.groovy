@@ -61,7 +61,7 @@ return gettags.text.readLines().collect {
         steps {
             shell('''chmod +x ./script.sh
 ./script.sh > output.txt
-tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh''')
+tar -czf ${BRANCH_NAME}_dsl_script.tar.gz *.sh *.groovy''')
         }
         publishers {
             archiveArtifacts {
