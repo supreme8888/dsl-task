@@ -47,7 +47,7 @@ job("MNTLAB-" + NAME + "-main-build-job"){
             }
         }
     scm{
-        github('MNT-Lab/dsl-task/', '${BRANCH_NAME}')
+        github('MNT-Lab/dsl-task', '${BRANCH_NAME}')
     }
     steps{
       shell('''chmod +x script.sh && ./script.sh > output.txt
