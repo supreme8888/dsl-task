@@ -2,6 +2,15 @@ def student = 'imelnik'
 (1..4).each {
     job("MNTLAB-$student-child" + it + '-build-job') {
         description 'Build and test the app.'
+        configure {
+          project ->
+            project / 'properties' << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+                'projectNameList'
+            }
+            project / 'properties' / 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' / 'projectNameList' {
+                'string' '*'
+            }
+        }
         parameters {
             activeChoiceParam('BRANCH_NAME') {
                 choiceType('SINGLE_SELECT')
